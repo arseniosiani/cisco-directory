@@ -43,8 +43,11 @@ let opts = {
     // you defined in the form
     // you can return a Promise as well
     let results = phone_book.filter(e => {
-      let name = params.name.toLowerCase();
-      return e.name.toLowerCase().indexOf(name) > -1 || e.phone.indexOf(name) > -1
+      if (name) { 
+        let name = params.name.toLowerCase();
+        return e.name.toLowerCase().indexOf(name) > -1 || e.phone.indexOf(name) > -1
+      }
+      return false;
     });
     return results;
   }
@@ -66,6 +69,11 @@ You sould modify the provisioning configuration adn add the url into the section
 ```
 
 Make sure tha the Ip Phone and the server are on the same network.
+
+## DEMO
+
+![Demo](demo.gif?raw)
+
 
 ## Reference
 
