@@ -31,6 +31,7 @@ module.exports = {
     title = t;
     directory = entries;
     app.listen(port, host);
+    return app;
   }
 }
 

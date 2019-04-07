@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "Simple server to provide a custom directory service on Cisco Ip Phones",
   "main": "index.js",
+  "keywords": [
+    "cisco",
+    "ipphone",
+    "service url",
+    "directory",
+    "node",
+    "nodejs"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
