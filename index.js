@@ -49,9 +49,11 @@ let buildXmlForm = () => {
   options.form.fields.forEach(f => { 
     xml += '<InputItem>' +
       '    <DisplayName>' + f.label + '</DisplayName>' +
-      '    <QueryStringParam>' + f.name + '</QueryStringParam>' +
-      '    <DefaultValue>' + (f.default||'') + '</DefaultValue>' +
-      '    <InputFlags>' + f.type + '</InputFlags>' +
+      '    <QueryStringParam>' + f.name + '</QueryStringParam>';
+    if (f.default)
+      xml += '    <DefaultValue>' + (f.default || '') + '</DefaultValue>';
+    
+    xml += '    <InputFlags>' + f.type + '</InputFlags>' +
       '  </InputItem>'
   })
   xml += '</CiscoIPPhoneInput>'
