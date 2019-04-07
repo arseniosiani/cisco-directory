@@ -43,7 +43,7 @@ let opts = {
     // you defined in the form
     // you can return a Promise as well
     let results = phone_book.filter(e => {
-      if (name) { 
+      if (params.name) { 
         let name = params.name.toLowerCase();
         return e.name.toLowerCase().indexOf(name) > -1 || e.phone.indexOf(name) > -1
       }
