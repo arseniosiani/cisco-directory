@@ -1,0 +1,22 @@
+{
+  "name": "cisco-directory",
+  "version": "1.0.0",
+  "description": "Simple server to provide a custom directory service on Cisco Ip Phones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arseniosiani/cisco-directory.git"
+  },
+  "author": "Arsenio Siani <arsenio.siani@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arseniosiani/cisco-directory/issues"
+  },
+  "homepage": "https://github.com/arseniosiani/cisco-directory#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
