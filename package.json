@@ -1,6 +1,6 @@
 {
   "name": "cisco-directory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple server to provide a custom directory service on Cisco Ip Phones",
   "main": "index.js",
   "keywords": [
