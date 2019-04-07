@@ -11,29 +11,45 @@ A simple provider for the ```/phones/directory.xml``` file to use with the Cisco
 ```javascript
 let cisco_directory = require('cisco-directory');
 
-let entries = {
-  "John": "+44012345678",
-  "Mary": "+44112223321",
-  "Tom": "+4401321",
+
+let phone_book = [
+  { name: "John", phone:"+44012345678"},
+  { name: "Mary", phone:"+44112223321"},
+  { name: "Tom", phone:"+4401321"}
+];
+
+let opts = {
+  ip: '<your_local_ip>',
+  no_results_message: "No results was found",  
+  directory: {
+    title: "Results",
+    prompt: "Select an entry to call"
+  },
+  form: {
+    title: "Search a number",                 // the title of the form
+    prompt: "Type the name or the surname",   // the propt to the user
+    fields: [                                 // you can add as many fields you want
+      {
+        name: "name",                         // the name of the var tha will be passed to the search_func  
+        label: "Name",                        // the label the user will see on his phone
+        type: "A",                            // can be: A:Text, T:Phone num, N:numeric, E:equaion, U:only uppercase, L:only lowercase, P:password
+        default:""
+      }
+    ]
+  },
+  search_func: (params) => { 
+    // this funcion will be invoken when the user perform a form submit
+    // here you should return the results based ont the search criteria
+    // you defined in the form
+    // you can return a Promise as well
+    let results = phone_book.filter(e => {
+      let name = params.name.toLowerCase();
+      return e.name.toLowerCase().indexOf(name) > -1 || e.phone.indexOf(name) > -1
+    });
+    return results;
+  }
 }
-
-cisco_directory.listen(80, "0.0.0.0", entries, "My awesome Company");
-```
-
-Since objects are passed as reference, you can add your own logic to keep these info updated
-
-```javascript
-let cisco_directory = require('cisco-directory');
-let entries = {
-  // ...whatever
-}
-
-cisco_directory.listen(80, "0.0.0.0", entries, "My awesome Company");
-
-setTimeout(() => {
-  //every 10 minutes update the entryes from DB
-  let entries = db.query('<your query here>');
-}, 600000)
+cisco_directory.listen(80, "0.0.0.0", opts);
 ```
 
 ## Configure the Phone
@@ -48,7 +64,10 @@ You sould modify the provisioning configuration adn add the url into the section
     <servicesURL>http://your_local_server/phones/directory.xml</servicesURL>
 </device>
 ```
+
 Make sure tha the Ip Phone and the server are on the same network.
 
 ## Reference
+
+For the Types, refer to [this](https://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cuipph/all_models/xsi/7_0/english/programming/guide/70xsi/xsi70obj.html#wp1033319)
 If you have thruble to config, you can refer to this [awesome post](https://www.whizzy.org/2017/02/cisco-7941-asterisk-and-sip/)
